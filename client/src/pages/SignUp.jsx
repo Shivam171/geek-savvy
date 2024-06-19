@@ -11,7 +11,6 @@ export default function SignUp() {
   const handleChange = (ev) => {
     setFormData({ ...formData, [ev.target.id]: ev.target.value.trim() });
   }
-  console.log(formData);
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
@@ -57,15 +56,15 @@ export default function SignUp() {
         <div className="flex-1">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div className="">
-              <Label>Username</Label>
+              <Label>Your username</Label>
               <TextInput type="text" onChange={handleChange} placeholder="John Doe" id="username" />
             </div>
             <div className="">
-              <Label>Email</Label>
+              <Label>Your email</Label>
               <TextInput type="email" onChange={handleChange} placeholder="john@gmail.com" id="email" />
             </div>
             <div className="">
-              <Label>Password</Label>
+              <Label>Your password</Label>
               <TextInput type="password" onChange={handleChange} placeholder="Password" id="password" />
             </div>
             <Button gradientDuoTone={"purpleToPink"} type="submit" disabled={loading}>
