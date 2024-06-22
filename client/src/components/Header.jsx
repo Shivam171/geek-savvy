@@ -54,9 +54,11 @@ export default function HeaderComponent() {
             </Dropdown>
           </>
         ) : (
-          <Button className="" gradientDuoTone='purpleToBlue' outline>
-            Sign In
-          </Button>
+          <Link to={'/sign-in'}>
+            <Button className="" gradientDuoTone='purpleToBlue' outline>
+              Sign In
+            </Button>
+          </Link>
         )}
         <Navbar.Toggle />
       </div>
