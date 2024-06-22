@@ -7,7 +7,7 @@ const userSchema = new Schema(
     profilePic: {
       type: String,
       default:
-        "https://qph.cf2.quoracdn.net/main-qimg-86d2d1075e904b34f4168544245f5254-lq",
+        "https://w7.pngwing.com/pngs/4/736/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png",
     },
   },
   { timestamps: true }
