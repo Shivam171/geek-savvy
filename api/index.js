@@ -1,3 +1,4 @@
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
@@ -12,6 +13,8 @@ mongoose
   .catch((err) => console.log(err));
 
 const app = express();
+
+app.use(cookieParser());
 
 app.listen(process.env.SERVER_PORT, () =>
   console.log(`Server running on port ${process.env.SERVER_PORT}!`)
