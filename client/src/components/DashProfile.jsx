@@ -1,15 +1,16 @@
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
-import { Alert, Button, Modal, TextInput } from 'flowbite-react';
+import { Alert, Button, Modal, Spinner, TextInput } from 'flowbite-react';
 import { useEffect, useRef, useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { app } from '../Firebase';
 import { deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutSuccess, updateFailure, updateStart, updateSuccess } from '../redux/user/userSlice';
 
 export default function DashProfile() {
-  const { currentUser, error } = useSelector(state => state.user)
+  const { currentUser, error, loading } = useSelector(state => state.user)
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const filePickerRef = useRef(null);
@@ -164,7 +165,7 @@ export default function DashProfile() {
               strokeWidth={5}
               styles={{
                 root: { width: '100%', height: '100%', position: 'absolute', top: '0', left: '0' },
-                path: { stroke: `rgba(62, 152, 199, ${imageFileUploadProgress / 100})` },
+                path: { stroke: `rgba(83, 199, 62, ${imageFileUploadProgress / 100})` },
               }} />}
           <img src={imageFileUrl || currentUser?.profilePic} alt="user" className={`rounded-full w-full h-full object-cover border-8 border-[lightgray] ${imageFileUploadProgress && imageFileUploadProgress < 100 && 'opacity-60'}`} />
         </div>
@@ -189,7 +190,19 @@ export default function DashProfile() {
           placeholder='password'
           onChange={handleChange}
         />
-        <Button type='submit' gradientDuoTone={"purpleToBlue"} outline>Update</Button>
+        <Button
+          type='submit'
+          gradientDuoTone={"purpleToBlue"}
+          outline
+          disabled={loading || imageFileUploading}
+        >{loading ? <Spinner /> : 'Update Profile'}</Button>
+        {currentUser.isAdmin && (
+          <Link to={"/create-post"}>
+            <Button type='button' gradientDuoTone={"purpleToPink"} className='w-full'>
+              Create a post
+            </Button>
+          </Link>
+        )}
       </form>
       <div className="text-red-500 flex  justify-between mt-5">
         <span className='cursor-pointer' onClick={() => { setShowModal(true) }}>Delete Account</span>
