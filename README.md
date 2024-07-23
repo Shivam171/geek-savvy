@@ -57,13 +57,13 @@ Geek Savvy is a fully responsive full-stack MERN blog web app. It offers a dynam
 1. Start the backend server:
     ```bash
     cd backend
-    npm start
+    npm run dev
     ```
 
 2. Start the frontend server:
     ```bash
     cd frontend
-    npm start
+    npm run dev
     ```
 
 3. Open your browser and navigate to `http://localhost:5173`.
